@@ -46,13 +46,13 @@ export default class BookListView extends Component {
 		return(
 			<div className={'book-shelf'}>
 				<div className={'request-stats'}>
-					<h6>Most Frequent Authors: {this.props.books[0].volumeInfo.authors}</h6>
-					<h6>Earliest publication date: {books[0].volumeInfo.publishedDate}</h6>
-					<h6>Recent publication date: {books[books.length - 1].volumeInfo.publishedDate}</h6>
+					<h6>Most Frequent Authors: {this.props.frequentAuthors}</h6>
+					<h6>Earliest publication date: {this.props.earliestpublicationdate}</h6>
+					<h6>Recent publication date: {this.props.mostrecentpublicationdate}</h6>
 				</div>
 				<div>
 					<div className={'book-stats'}>
-						<span>{`Showing books from: ${this.props.range[0]} to: ${this.props.range[1]}`}</span>
+						<span>{`Showing books  ${this.props.range[0]} to ${this.props.range[1]} , Total results: ${this.props.range[2]}`}</span>
 					</div>
 					<div className={'pagination'}>
 						<button onClick={ (evt) => {

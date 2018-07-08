@@ -20,13 +20,15 @@ class App extends Component {
 	
 	notifyBooks(books) {
 		this.setState({
-			books: books,
+			books: books.sort( (first, second) => {
+				return (new Date(first.volumeInfo.publishedDate) > new Date(second.volumeInfo.publishedDate));
+			}),
 			start: 0,
 			currbooklist: books.slice(0,10)
 		})
 	}
 
-	getPreviousBookSet() {
+	getPreviousBookSet(evt) {
 		if(this.state.start > 0) {
 			this.setState({
 				start: this.state.start - 10,
@@ -35,7 +37,7 @@ class App extends Component {
 		}
 	}
 
-	getNextBookSet() {
+	getNextBookSet(evt) {
 		if(this.state.start < (this.state.books.length - 10)) {
 			this.setState({
 				start: this.state.start + 10,
@@ -52,7 +54,10 @@ class App extends Component {
 			{
 				(this.state.currbooklist && this.state.currbooklist.length > 0 ) ? 
 					<BookListView 
-						range={[this.state.start , this.state.start+10]}
+						mostrecentpublicationdate={this.state.books[this.state.books.length - 1].volumeInfo.publishedDate}
+						earliestpublicationdate={this.state.books[0].volumeInfo.publishedDate}
+						frequentAuthors={this.state.books[0].volumeInfo.authors}
+						range={[this.state.start, this.state.start+10, this.state.books.length]}
 						books={this.state.currbooklist}
 						prevBookSet={this.getPreviousBookSet}
 						nextBookSet={this.getNextBookSet} /> : null

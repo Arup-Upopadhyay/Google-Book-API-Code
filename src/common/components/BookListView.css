@@ -42,5 +42,8 @@
 	width: 300px !important;
 	margin-left: 40%;
 	margin-top: 10px;
-	border: 1px red solid;
+	border: 1px #767676 solid;
+}
+.request-stats > h6 {
+	margin-left: 20%;
 }
