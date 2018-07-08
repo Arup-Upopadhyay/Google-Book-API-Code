@@ -1,0 +1,24 @@
+.bookstore-form {
+	height: auto;
+	width: 45%;
+	border: 1px lightgrey solid;
+	margin-left: 25%;
+}
+.form-name-section {
+	height: 40px;
+}
+.form-name-section > input {
+	float: right;
+	width: 50%;
+}
+.form-title-section {
+	height: 40px;
+}
+.form-title-section > input{
+	float: right;
+	width: 50%;
+}
+.form-btn-section {
+	height: auto;
+	padding-left: 40%;
+}

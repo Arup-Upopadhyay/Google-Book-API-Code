@@ -1,0 +1,46 @@
+.book-shelf > div {
+    height: 30px;
+    width: 100%;
+}
+.book-stats, .pagination {
+    display: inline-block;
+}
+.pagination {
+    float: right;
+	margin-right: 130px;
+}
+.book-stats {
+    margin-top: 5px;
+    float: left;
+	margin-left: 130px;
+}
+.books-list {
+	height: auto;
+	max-height: 500px;
+	width: 80%;
+	border: 1px grey solid;
+	overflow: scroll;
+	margin-left: 10%;
+	margin-top: 10px;
+}
+.book-item {
+    height: 100px;
+    width: 100%;
+    border: 1px blue solid;
+    border-radius: 4px;
+    background-color: lightgrey;
+	overflow: scroll;
+}
+
+.book-item > span {
+   display: block;
+   margin-left: 10px;
+   margin-top: 5px;
+}
+.request-stats {
+	height: 200px !important;
+	width: 300px !important;
+	margin-left: 40%;
+	margin-top: 10px;
+	border: 1px red solid;
+}
