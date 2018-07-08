@@ -37,12 +37,7 @@ export default class BookListView extends Component {
 	}
 
 	render() {
-
-		const books = this.props.books.sort( (first, second) => {
-			first = new Date(first.volumeInfo.publishedDate);
-			second = new Date(second.volumeInfo.publishedDate);
-			return first > second;
-		});
+	
 		return(
 			<div className={'book-shelf'}>
 				<div className={'request-stats'}>

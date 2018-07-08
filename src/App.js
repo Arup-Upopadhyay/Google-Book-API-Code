@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import './App.css';
 import FormComponent from './common/components/FormComponent.js';
 import BookListView from './common/components/BookListView.js';
+import Utils from './common/common-utils.js';
 
 class App extends Component {
 	constructor() {
 		super();
 		this.state = {
 			books: [],
-			start: 0
+			start: 0,
+			currbooklist: []
 		}
 
 		this.notifyBooks = this.notifyBooks.bind(this);
@@ -19,13 +21,16 @@ class App extends Component {
 	}
 	
 	notifyBooks(books) {
-		this.setState({
-			books: books.sort( (first, second) => {
+		if(books) {
+			books.sort( (first, second) => {
 				return (new Date(first.volumeInfo.publishedDate) > new Date(second.volumeInfo.publishedDate));
-			}),
+			})
+		}
+		this.setState({
+			books: books, 
 			start: 0,
-			currbooklist: books.slice(0,10)
-		})
+			currbooklist: books? books.slice(0,10) : []
+		});
 	}
 
 	getPreviousBookSet(evt) {
@@ -56,7 +61,7 @@ class App extends Component {
 					<BookListView 
 						mostrecentpublicationdate={this.state.books[this.state.books.length - 1].volumeInfo.publishedDate}
 						earliestpublicationdate={this.state.books[0].volumeInfo.publishedDate}
-						frequentAuthors={this.state.books[0].volumeInfo.authors}
+						frequentAuthors={Utils.getMostFrequentAuthor(this.state.books)}
 						range={[this.state.start, this.state.start+10, this.state.books.length]}
 						books={this.state.currbooklist}
 						prevBookSet={this.getPreviousBookSet}
