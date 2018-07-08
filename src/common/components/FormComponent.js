@@ -9,7 +9,8 @@ export default class FormComponent extends Component {
 
 		this.state = {
 			names: '',
-			title: ''
+			title: '',
+			responsetime: -1
 		};
 
 		this.handleSearch = this.handleSearch.bind(this);
@@ -22,6 +23,9 @@ export default class FormComponent extends Component {
 	render() {
 		return(
 			<div className={'bookstore-form'}>
+				{
+					this.state.responsetime >= 0 ? <h6>Server Response Time: {this.state.responsetime} seconds</h6> : null
+				}
 				<div className={'form-name-section'}>
 					<label htmlFor='names'>Comma Seperated Author Names:</label>
 					<input 
@@ -48,7 +52,9 @@ export default class FormComponent extends Component {
 			Utils.getRemoteData({method: 'post', url: 'http://localhost:3000/findbooks/', 
 								data: {names: this.state.names, title: this.state.title}},
 				(response)=>{
-					this.notifySearchResult(response.data.items);
+					this.setState({
+						responsetime: response.serverResponseTime
+					},this.notifySearchResult(response.data.items))
 			});
 	}
 
