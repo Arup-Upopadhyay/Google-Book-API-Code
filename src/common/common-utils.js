@@ -20,14 +20,16 @@ export default {
 		let freqCnt = 0;
 
 		books.forEach( (book) => {
-			book.volumeInfo.authors.forEach( (name) => {
-				if(!map[name]) {
-					map[name] = 1;
-				}
-				else {
-					map[name] += 1;
-				}
-			});
+			if(book.volumeInfo.authors && book.volumeInfo.authors.length) {
+				book.volumeInfo.authors.forEach( (name) => {
+					if(!map[name]) {
+						map[name] = 1;
+					}
+					else {
+						map[name] += 1;
+					}
+				});
+			}
 		});
 		
 		for(var key in map) {
